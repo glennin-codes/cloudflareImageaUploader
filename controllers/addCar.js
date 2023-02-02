@@ -1,48 +1,54 @@
- import carsModel from '../models/cars.js'
+import carsModel from '../models/cars.js';
 import { cloudinary } from '../utils/Cloudinary.js';
- export const addCar= async (req,res)=>{
-  
-const {carID,carName,carType,engine,description,images}=req.body
-   let promises= [];
-try{
-    if (images){
-      promises.push(images.forEach(async image => {
-           cloudinary.uploader.upload(image,{folder:'MilePhotos'})
-       }
-       ));
-       const response =await promises.all(promises);
-       res.status(200).json({message:'succesfull uploaded to cloudinary'})
-      //  console.log(response)
+
+export const addCar = async (req, res) => {
+  const { carID, carName, carType, engine, description, images } = req.body;
+  let promises = [];
+
+  try {
+    if (images) {
+      images.forEach(async image => {
+        promises.push(cloudinary.uploader.upload(image, { folder: 'MilePhotos' }));
+      });
+
+      const response = await Promise.all(promises);
+      const carImages = response.map(r => r.secure_url);
+      const publicIds = response.map(r => r.public_id);
+
       await carsModel.create({
-        carID,carName,carType,engine,description,
-        carImage:response[0].secure_url,
-        image2:response[1].secure_url,
-        image3:response[2].secure_url,
-        image4:response[3].secure_url,
-        image5:response[4].secure_url,
-        image6:response[5].secure_url,
-        image7:response[6].secure_url,
-        image8:response[7].secure_url,
-        image9:response[8].secure_url,
-        image10:response[9].secure_url,
-    
-        public_id1:response[0].public_id,
-        public_id2:response[1].public_id,
-        public_id3:response[2].public_id,
-        public_id4:response[3].public_id,
-        public_id5:response[4].public_id,
-        public_id6:response[5].public_id,
-        public_id7:response[6].public_id,
-        public_id8:response[7].public_id,
-        public_id9:response[8].public_id,
-        public_id10:response[9].public_id
-    });
-      return res.status(201).json({"code":1});
+        carID,
+        carName,
+        carType,
+        engine,
+        description,
+        carImage: carImages[0],
+        image2: carImages[1],
+        image3: carImages[2],
+        image4: carImages[3],
+        image5: carImages[4],
+        image6: carImages[5],
+        image7: carImages[6],
+        image8: carImages[7],
+        image9: carImages[8],
+        image10: carImages[9],
+        public_id1: publicIds[0],
+        public_id2: publicIds[1],
+        public_id3: publicIds[2],
+        public_id4: publicIds[3],
+        public_id5: publicIds[4],
+        public_id6: publicIds[5],
+        public_id7: publicIds[6],
+        public_id8: publicIds[7],
+        public_id9: publicIds[8],
+        public_id10: publicIds[9]
+      });
+
+      return res.status(201).json({ code: 1 });
     }
-   
-  
-    }
-    catch(error){
-return res.status(500).send(`there was an error ${error.message}`)
-    }
- }
+  } catch (error) {
+    return res.status(500).send(`There was an error: ${error.message}`);
+  }
+};
+
+
+
