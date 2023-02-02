@@ -56,10 +56,40 @@ const carsSchema= new mongoose.Schema(
         image10:{
             type:String,
         },
+      
+        public_id1:{
+            type:String
+        },
+        public_id2:{
+            type:String
+        },
+        public_id3:{
+            type:String
+        },
+        public_id4:{
+            type:String
+        },
+        public_id5:{
+            type:String
+        },
+        public_id6:{
+            type:String
+        },
+        public_id7:{
+            type:String
+        },
+        public_id8:{
+            type:String
+        },
+        public_id9:{
+            type:String
+        },
+        public_id10:{
+            type:String
+        },
         color: {
             type: String,
         },
-
         transmission:{
             type: String,
             required:[true, "specify the transimission"]
@@ -75,13 +105,6 @@ const carsSchema= new mongoose.Schema(
         },
         engine:{
             type:String,
-        },
-       mileage:{
-            type:String,
-        },
-        cubicCentimeters:{
-            type: String,
-          
         },
         price:{
             type:Number,
