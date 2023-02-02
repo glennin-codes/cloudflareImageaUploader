@@ -10,15 +10,16 @@ import bodyParser from 'body-parser';
 dotenv.config()
 
 const app= express()
+app.use( express.json({ limit: '20MB' }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 const PORT= process.env.PORT || 8000
 
 app.get('/',(req,res)=>{
-res.send('Miles Motors Api : developed by Amschel & Glen :-) ')
+res.send(' testing 2..3...4:-) ')
 })
-app.use(express.json());
+
 app.use('/cars',carsRouter);
 app.use("/car",carRouter);
 
