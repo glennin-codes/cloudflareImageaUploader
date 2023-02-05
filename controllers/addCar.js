@@ -41,7 +41,7 @@ export const addCar = async (req, res) => {
 
 
   try {
-    const { carID, transmission,fuel,price,carName, carType, engine, description,images} = req.body;
+    const { carID, transmission,fuel,price,color,carName, carType, engine, description,images} = req.body;
     if (images) {
       console.log(images)
       images.forEach(async image => {
@@ -50,6 +50,7 @@ export const addCar = async (req, res) => {
 
       const response = await Promise.all(promises);
       console.log(response);
+      
       const carImages = response.map(r => r.secure_url);
       const publicIds = response.map(r => r.public_id);
 
@@ -62,6 +63,7 @@ export const addCar = async (req, res) => {
         description,
         fuel,
         price,
+        color,
         transmission,
         carImg: carImages[0],
         image2: carImages[1],
