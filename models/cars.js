@@ -21,72 +21,72 @@ const carsSchema= new mongoose.Schema(
             required:[true, "car type must be provided"]
         },
         
-        // carImg:{
-        //     type:String,
-        //     required:[true, " a product must have an Image"]
-        // },
+        carImg:{
+            type:String,
+            required:[true, " a product must have an Image"]
+        },
        
-        // image2:{
-        //     type:String,
-        // },
+        image2:{
+            type:String,
+        },
        
-        // image3:{
-        //     type:String,
-        // },
+        image3:{
+            type:String,
+        },
        
-        // image4:{
-        //     type:String,
-        // },
+        image4:{
+            type:String,
+        },
        
-        // image5:{
-        //     type:String,
-        // },
-        // image6:{
-        //     type:String,
-        // },
-        // image7:{
-        //     type:String,
-        // },
-        // image8:{
-        //     type:String,
-        // },
-        // image9:{
-        //     type:String,
-        // },
-        // image10:{
-        //     type:String,
-        // },
+        image5:{
+            type:String,
+        },
+        image6:{
+            type:String,
+        },
+        image7:{
+            type:String,
+        },
+        image8:{
+            type:String,
+        },
+        image9:{
+            type:String,
+        },
+        image10:{
+            type:String,
+        },
       
-        // public_id1:{
-        //     type:String
-        // },
-        // public_id2:{
-        //     type:String
-        // },
-        // public_id3:{
-        //     type:String
-        // },
-        // public_id4:{
-        //     type:String
-        // },
-        // public_id5:{
-        //     type:String
-        // },
-        // public_id6:{
-        //     type:String
-        // },
-        // public_id7:{
-        //     type:String
-        // },
-        // public_id8:{
-        //     type:String
-        // },
-        // public_id9:{
-        //     type:String
-        // },
-        // public_id10:{
-        //     type:String
-        // },
+        public_id1:{
+            type:String
+        },
+        public_id2:{
+            type:String
+        },
+        public_id3:{
+            type:String
+        },
+        public_id4:{
+            type:String
+        },
+        public_id5:{
+            type:String
+        },
+        public_id6:{
+            type:String
+        },
+        public_id7:{
+            type:String
+        },
+        public_id8:{
+            type:String
+        },
+        public_id9:{
+            type:String
+        },
+        public_id10:{
+            type:String
+        },
         color: {
             type: String,
         },
@@ -98,10 +98,6 @@ const carsSchema= new mongoose.Schema(
         fuel:{
         type:String,
          
-        },
-        bodyStyle:{
-            type:String,
-
         },
         engine:{
             type:String,
