@@ -44,12 +44,16 @@ export const addCar = async (req, res) => {
     const { carID, transmission,fuel,price,color,carName, carType, engine, description,images} = req.body;
     if (images) {
       console.log(images)
+      const promises = []
       images.forEach(async image => {
         promises.push(cloudinary.uploader.upload(image, { folder: 'MilesPhotos' }));
       });
-
+          
       const response = await Promise.all(promises);
       console.log(response);
+      if (!response){
+        throw new Error('failed to upload to cloudinary')
+      }
       
       const carImages = response.map(r => r.secure_url);
       const publicIds = response.map(r => r.public_id);
