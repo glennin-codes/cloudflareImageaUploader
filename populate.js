@@ -8,7 +8,7 @@ const start= async ()=>{
     try{
        
         await connect(process.env.MONGO_URL)
-        // await carsModel.deleteMany()//first delete everything in the database
+        await carsModel.deleteMany()//first delete everything in the database
         await carsModel.create(cars)//add the json products
 console.log("connection succesful")
 process.exit(0)//exit succesfully

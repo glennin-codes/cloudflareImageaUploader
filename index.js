@@ -7,15 +7,15 @@ import carRouter from "./routes/car.js"
 import cors from 'cors'
 
 import bodyParser from 'body-parser';
+import { addCar } from './controllers/addCar.js'
 dotenv.config()
 
 const app= express()
-app.use(bodyParser.json({limit: '200mb'}));
+app.use(express.json());
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-    limit: '200mb',
+    limit: '100mb',
     extended: true
     }));
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 const PORT= process.env.PORT || 8000
 
