@@ -3,54 +3,16 @@ import { cloudinary } from '../utils/Cloudinary.js';
 
 
 export const addCar = async (req, res) => {
-// try{
-//   const { carID, carName, carType, engine, description} = req.body;
-// //   let promises = [];
-//   let images = [...req.body.images];
-//   let imagesBuffer = [];
-
-
-//   for (let i =0; i < images.length;  i++){
-//         const result = await cloudinary.uploader.upload(images[i], {
-//         folder: "testing",
-//         crop: "scale"
-//   });
-//   imagesBuffer.push({
-//     public_id: result.public_id,
-//     url: result.secure_url
-//   })
-//   console.log(imagesBuffer);
-//   return res.status(201).json({ "code": 1 });
-
-// }
-// } catch (error) {
-//     return res.status(500).send(`There was an error: ${error.message}`);
-//   }
-// };
-
-
-  
-  
-
-
-
-
-
-
-
-
 
   try {
     const { carID, transmission,fuel,price,color,carName, carType, engine, description,images} = req.body;
     if (images) {
-      console.log(images)
       const promises = []
       images.forEach(async image => {
         promises.push(cloudinary.uploader.upload(image, { folder: 'MilesPhotos' }));
       });
           
       const response = await Promise.all(promises);
-      console.log(response);
       if (!response){
         throw new Error('failed to upload to cloudinary')
       }
