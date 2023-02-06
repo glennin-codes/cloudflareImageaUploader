@@ -10,15 +10,13 @@ const{carId}=req.params
             const car = await carsModel.findOneAndDelete({"carID":carId});
         
             console.log(car)
-            res.json({message:"destroyed", "data":car});
-            if(!car){
-                res.json({message:`car with id ${carId} does not exist`, "data":car});
-               
+            if (car) {
+                return  res.json({message:"destroyed", "data":car});
             }
-      
-        
-       
-
+              else{
+               
+                throw new Error ('car not found')
+              }
     }
     catch(e){
         console.log(e);

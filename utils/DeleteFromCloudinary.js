@@ -29,7 +29,12 @@ export const DeleteFromCloudinary = async (carId,res) => {
       const deletedArray = await Promise.all(Delete);
       //  console.log(`Deleted ${deletedArray.deleted.length} images from Cloudinary`);
         console.log(deletedArray);
+        if (deletedArray){
         res.json({msg:`Deleted all images of the id from Cloudinary`})
+        }
+       else{
+          throw new Error('failed to delete from cloudinary')
+        }
     }
        
    }catch(error){
