@@ -14,7 +14,7 @@ const{carId}=req.params
                 return  res.json({message:"destroyed", "data":car});
             }
               else{
-               
+               res.status(404).json('car not found')
                 throw new Error ('car not found')
               }
     }
