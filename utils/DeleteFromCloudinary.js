@@ -2,12 +2,13 @@ import carsModel from "../models/cars.js";
 import { cloudinary } from "./Cloudinary.js";
 
 
-export const DeleteFromCloudinary = async (carId) => {
+export const DeleteFromCloudinary = async (carID) => {
    try{
-       const car=await carsModel.findOne({"carID":carId})
+       const car=await carsModel.findOne({"carID":carID})
        if (!car){
         throw new Error("car Images not found")
        }
+       if (car){
        const publicIds = [
         car.public_id1,
         car.public_id2,
@@ -20,11 +21,12 @@ export const DeleteFromCloudinary = async (carId) => {
         car.public_id9,
         car.public_id10,
       ];
+    }
        const deleted = await cloudinary.uploader.destroy(publicIds);
-       console.log(`Deleted ${deleted.deleted.length} images from Cloudinary`);
-        
+      //  console.log(`Deleted ${deleted.deleted.length} images from Cloudinary`);
+        console.log(deleted);
    }catch(error){
-       console.log(error);
+       console.error(error);
    }
 }
 
