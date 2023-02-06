@@ -2,7 +2,7 @@ import carsModel from "../models/cars.js";
 import { cloudinary } from "./Cloudinary.js";
 
 
-export const DeleteFromCloudinary = async (carId) => {
+export const DeleteFromCloudinary = async (carId,res) => {
    try{
        const car=await carsModel.findOne({"carID":carId})
        if (!car){
