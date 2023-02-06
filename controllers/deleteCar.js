@@ -2,14 +2,14 @@
 import carsModel from '../models/cars.js'
 import { DeleteFromCloudinary } from '../utils/DeleteFromCloudinary.js'
  export const deleteCar= async (req,res)=>{
-const{carID}=req.params
+const{carId}=req.params
     try{
        
                      
-        await DeleteFromCloudinary(carID);
-        res.json({ message: "Deleted from Cloudinary" });
+        // await DeleteFromCloudinary(carId);
 
-        const car = await carsModel.findOneAndDelete({"carID":carID});
+
+        const car = await carsModel.findOneAndDelete({"carID":carId});
         
 
         console.log(car)
@@ -18,6 +18,7 @@ const{carID}=req.params
 
     }
     catch(e){
+        console.log(e);
         return null
 
 

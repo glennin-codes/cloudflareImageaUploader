@@ -2,9 +2,9 @@ import carsModel from "../models/cars.js";
 import { cloudinary } from "./Cloudinary.js";
 
 
-export const DeleteFromCloudinary = async (carID) => {
+export const DeleteFromCloudinary = async (carId) => {
    try{
-       const car=await carsModel.findOne({"carID":carID})
+       const car=await carsModel.findOne({"carID":carId})
        if (!car){
         throw new Error("car Images not found")
        }
