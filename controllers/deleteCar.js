@@ -6,20 +6,22 @@ const{carId}=req.params
     try{
        
                      
-        await DeleteFromCloudinary(carId);
-
-
-        const car = await carsModel.findOneAndDelete({"carID":carId});
+        await DeleteFromCloudinary(carId).then(async() => {
+            const car = await carsModel.findOneAndDelete({"carID":carId});
         
-
-        console.log(car)
-        res.json({message:"destroyed", "data":car});
+            console.log(car)
+            res.json({message:"destroyed", "data":car});
+            if(!car){
+                throw new Error(`car with id ${carId} does not exist`);
+            }
+        });
+        
        
 
     }
     catch(e){
         console.log(e);
-        return null
+        res.status(500).json({message: 'Error while deleting the car', error: e});
 
 
     }
