@@ -15,7 +15,10 @@ const{carId}=req.params
                 res.json({message:`car with id ${carId} does not exist`, "data":car});
                 throw new Error(`car with id ${carId} does not exist`);
             }
-        });
+        }).catch(error => {
+            console.log(error);
+            res.status(500).json({message: 'Error while deleting the car', error: error});
+          });
         
        
 
