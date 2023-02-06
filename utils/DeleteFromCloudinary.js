@@ -6,7 +6,7 @@ export const DeleteFromCloudinary = async (carId,res) => {
    try{
        const car=await carsModel.findOne({"carID":carId})
        if (!car){
-       res.json({message:"car with the id is already deleted from the database"})
+       res.json({message:`car with the id ${carId} is already deleted from the database`})
        }
        if (car){
        const publicIds = [

@@ -12,6 +12,7 @@ const{carId}=req.params
             console.log(car)
             res.json({message:"destroyed", "data":car});
             if(!car){
+                res.json({message:`car with id ${carId} does not exist`, "data":car});
                 throw new Error(`car with id ${carId} does not exist`);
             }
         });
