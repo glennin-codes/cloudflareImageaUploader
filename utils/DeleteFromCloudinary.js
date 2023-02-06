@@ -21,6 +21,7 @@ export const DeleteFromCloudinary = async (carId,res) => {
         car.public_id9,
         car.public_id10,
       ];
+      console.log(publicIds);
       const deleted = await cloudinary.uploader.destroy(publicIds);
       //  console.log(`Deleted ${deleted.deleted.length} images from Cloudinary`);
         console.log(deleted);
