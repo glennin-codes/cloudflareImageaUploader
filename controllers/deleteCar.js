@@ -12,7 +12,8 @@ const{carId}=req.params
         
             console.log(car)
             if (car) {
-                return  res.json({message:"destroyed", "data":car});
+                return res
+                .status(200).json({message:"destroyed", "data":car});
             }
               else{
                res.status(404).json('car not found')
