@@ -7,6 +7,7 @@ const{carId}=req.params
        
                      
         await DeleteFromCloudinary(carId,res)
+        
             const car = await carsModel.findOneAndDelete({"carID":carId});
         
             console.log(car)
