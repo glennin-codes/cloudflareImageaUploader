@@ -21,7 +21,7 @@ export const addCar = async (req, res) => {
         promises.push(
           cloudinary.uploader.upload(image, {
             folder: "MilesPhotos",
-            transformation: [{ width: 500, height: 500, crop: "fill" }],
+            
           })
         );
       });
