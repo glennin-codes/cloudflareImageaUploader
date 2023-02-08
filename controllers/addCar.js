@@ -1,27 +1,40 @@
-import carsModel from '../models/cars.js';
-import { cloudinary } from '../utils/Cloudinary.js';
-
+import carsModel from "../models/cars.js";
+import { cloudinary } from "../utils/Cloudinary.js";
 
 export const addCar = async (req, res) => {
-
   try {
-    const { carID, transmission,fuel,price,color,carName, carType, engine, description,images} = req.body;
+    const {
+      carID,
+      transmission,
+      fuel,
+      price,
+      color,
+      carName,
+      carType,
+      engine,
+      description,
+      images,
+    } = req.body;
     if (images) {
-      const promises = []
-      images.forEach(async image => {
-        promises.push(cloudinary.uploader.upload(image, { folder: 'MilesPhotos' }));
+      const promises = [];
+      images.forEach(async (image) => {
+        promises.push(
+          cloudinary.uploader.upload(image, {
+            folder: "MilesPhotos",
+            transformation: [{ width: 500, height: 500, crop: "fill" }],
+          })
+        );
       });
-          
-      const response = await Promise.all(promises);
-      if (!response){
-        throw new Error('failed to upload to cloudinary')
-      }
-      
-      const carImages = response.map(r => r.secure_url);
-      const publicIds = response.map(r => r.public_id);
 
-     const car= await carsModel.create({
-      
+      const response = await Promise.all(promises);
+      if (!response) {
+        throw new Error("failed to upload to cloudinary");
+      }
+
+      const carImages = response.map((r) => r.secure_url);
+      const publicIds = response.map((r) => r.public_id);
+
+      const car = await carsModel.create({
         carID,
         carName,
         carType,
@@ -50,16 +63,12 @@ export const addCar = async (req, res) => {
         public_id7: publicIds[6],
         public_id8: publicIds[7],
         public_id9: publicIds[8],
-        public_id10: publicIds[9]
+        public_id10: publicIds[9],
       });
 
-      return res.status(201).json({ 'code': 1 });
+      return res.status(201).json({ code: 1 });
     }
-   }
-   catch (error) {
+  } catch (error) {
     return res.status(500).send(`There was an error: ${error.message}`);
   }
 };
-
-
-

@@ -14,13 +14,13 @@ export const DeleteFromCloudinary = async (carId, res) => {
         }
       }
 
-      console.log(publicIds);
+      // console.log(publicIds);
       const deletePromises = publicIds.map((publicId) => {
         return cloudinary.uploader.destroy(publicId);
       });
       const deletedArray = await Promise.all(deletePromises);
       //  console.log(`Deleted ${deletedArray.deleted.length} images from Cloudinary`);
-      console.log(deletedArray);
+      // console.log(deletedArray);
       if (deletedArray) {
         console.log(`deleted all images with the id ${car.carID} `);
       } else {
